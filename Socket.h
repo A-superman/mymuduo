@@ -16,7 +16,7 @@ public:
     int fd() const { return sockfd_; }
     void bindAddress(const InetAddress &localaddr);
     void listen();
-    void accept(InetAddress *peeraddr);
+    int accept(InetAddress *peeraddr);
 
     void shutdownWrite();
 
@@ -27,6 +27,3 @@ public:
 private:
     const int sockfd_;
 };
-
-
-// hello git
