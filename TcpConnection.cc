@@ -125,7 +125,7 @@ void TcpConnection::handleRead(Timestamp receiveTime)
     if(n > 0)
     {
         // 已建立连接的用户有可读事件发生了，调用用户传入的回调操作onMessage
-        messageCallback_(shared_from_this(), &inputBuffer_, &receiveTime);
+        messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
     }
     else if(n == 0) // 断开连接
     {

@@ -1,6 +1,5 @@
 #include "TcpServer.h"
 #include "logger.h"
-#include "TcpConnection.h"
 
 #include <functional>
 #include <strings.h>
@@ -26,6 +25,7 @@ TcpServer::TcpServer(EventLoop *loop
                 , threadPool_(new EventLoopThreadPool(loop, name_))
                 , connectionCallback_()
                 , nextConnId_(1)
+                , started_(0)
 {
     // 当有新用户连接时，会执行TcpServer::newConnection回调
     acceptor_->setNewConnectCallback(std::bind(&TcpServer::newConnection, this,

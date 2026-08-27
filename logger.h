@@ -22,7 +22,6 @@
         char buffer[1024] = {0};                             \
         snprintf(buffer, 1024, LogmsgFormat, ##__VA_ARGS__); \
         logger.log(buffer);                                  \
-        exit(-1);                                            \
     } while (0);
 
 #define LOG_FATAL(LogmsgFormat, ...)                         \
@@ -32,6 +31,7 @@
         logger.setLogLevel(FATAL);                           \
         char buffer[1024] = {0};                             \
         snprintf(buffer, 1024, LogmsgFormat, ##__VA_ARGS__); \
+        exit(-1);                                            \
         logger.log(buffer);                                  \
     } while (0);
 
