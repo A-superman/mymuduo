@@ -68,7 +68,7 @@ void TcpConnection::sendInLoop(const void *data, size_t len)
     bool faultError = false;
 
     // 之前调用过该connection的shutdown，不能再进行发送了
-    if(state_ = kDisconnected)
+    if(state_ == kDisconnected)
     {
         LOG_ERROR("disconnected, give up writing!");
         return;
@@ -92,7 +92,7 @@ void TcpConnection::sendInLoop(const void *data, size_t len)
             if(errno != EWOULDBLOCK)
             {
                 LOG_ERROR("TcpConnection::sendInLoop");
-                if(errno = EPIPE || errno == ECONNRESET)    // SIGPIPE  RESET
+                if(errno == EPIPE || errno == ECONNRESET)    // SIGPIPE  RESET
                 {
                     faultError = true;
                 }

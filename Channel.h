@@ -38,9 +38,9 @@ public:
 
     // 设置fd相应的事件状态
     void enableReading() { events_ |= KReadEvent; update(); }
-    void disableReading() { events_ |= ~KReadEvent; update(); }
+    void disableReading() { events_ &= ~KReadEvent; update(); }
     void enableWriting() { events_ |= KWriteEvent; update(); }
-    void disableWriting() { events_ |= ~KWriteEvent; update(); }
+    void disableWriting() { events_ &= ~KWriteEvent; update(); }
     void disableAll() { events_ = KNoneEvent; update(); }
 
     // 返回fd当前的事件状态
