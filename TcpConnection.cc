@@ -234,5 +234,3 @@ void TcpConnection::connectDestroyed()
     }
     channel_->remove(); // 把channel从poller中删除掉
 }
-// void sendInLoop(const void *message, size_t len);
-// void shutdownInLoop();

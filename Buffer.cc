@@ -17,7 +17,7 @@ ssize_t Buffer::readFd(int fd, int* saveErrno)
     vec[1].iov_base = extrabuf;
     vec[1].iov_len = sizeof extrabuf;
 
-    const int iovcnt = (writable < sizeof extrabuf) ? 2 : 1;
+    const int iovcnt = (writable < sizeof extrabuf) ? 2 : 1; // 保证最少读65536个字节
     const ssize_t n = readv(fd, vec, iovcnt);
     if(n < 0)
     {

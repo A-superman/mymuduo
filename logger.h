@@ -31,8 +31,8 @@
         logger.setLogLevel(FATAL);                           \
         char buffer[1024] = {0};                             \
         snprintf(buffer, 1024, LogmsgFormat, ##__VA_ARGS__); \
-        exit(-1);                                            \
         logger.log(buffer);                                  \
+        exit(-1);                                            \
     } while (0);
 
 #ifdef MUDEDUG

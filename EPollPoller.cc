@@ -15,7 +15,7 @@ const int kDeleted = 2;
 
 EPollPoller::EPollPoller(EventLoop *loop) 
     : Poller(loop)
-    , epollfd_(::epoll_create1(EPOLL_CLOEXEC))
+    , epollfd_(::epoll_create1(EPOLL_CLOEXEC))  // 创建epoll树根
     , events_(kInitEventListSize)       // vector<epoll_event>
 {
     if(epollfd_ < 0) {
@@ -24,7 +24,7 @@ EPollPoller::EPollPoller(EventLoop *loop)
 }
 EPollPoller::~EPollPoller() 
 {
-    ::close(epollfd_);
+    ::close(epollfd_);  // 销毁epoll树根
 }
 // epoll_wait
 Timestamp EPollPoller::poll(int timeoutMs, ChannelList *activeChannels) 
