@@ -36,7 +36,7 @@ public:
         return begin() + readerIndex_;
     }
     // onMessage string <- Buffer
-    void retrieve(size_t len)
+    void retrieve(size_t len) // 读数据后readerIndex_的位置改变
     {
         if(len < readableBytes())
         {

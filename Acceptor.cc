@@ -8,7 +8,7 @@
 
 static int createNonblocking()
 {
-    int sockfd = ::socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
+    int sockfd = ::socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);  // 监听新连接的fd
     if(sockfd < 0) 
     {
         LOG_FATAL("%s:%s:%d listen socket create err:%d \n", __FILE__, __FUNCTION__, __LINE__, errno);
@@ -37,7 +37,7 @@ void Acceptor::listen()
 {
     listenning_ = true;
     acceptSocket_.listen();
-    acceptChannel_.enableReading(); // acceptChannel_ =》 Poller
+    acceptChannel_.enableReading(); // acceptChannel_ =》 Poller   监听fd上树
 }
 // listenfd有事件发生了，就是有新用户连接了
 void Acceptor::handleRead()
